@@ -36,8 +36,10 @@ type Pokemon struct {
 
 // Pokemon implements pokemon.
 func (s *pokesrvc) Pokemon(ctx context.Context, p *poke.PokemonPayload) (res string, err error) {
-    response, err := http.Get("https://pokeapi.co/api/v2/pokemon?limit=10000")
-
+	var x string
+	x = "50000"
+    response, err := http.Get("https://pokeapi.co/api/v2/pokemon?limit=" +  x)
+	x = x + "0"
     if err != nil {
         fmt.Print(err.Error())
         os.Exit(1)
@@ -55,12 +57,13 @@ func (s *pokesrvc) Pokemon(ctx context.Context, p *poke.PokemonPayload) (res str
 
 	for i := 0; i < 1000; i++ {
 		//fmt.Print(responseObject.Pokemon[i].Name)
+		fmt.Print(i)
 		if string(p.Name[0]) == string((responseObject.Pokemon[i].Name)[0]){
 			return responseObject.Pokemon[i].Name, nil
 	}
 	}
 
-	return responseObject.Pokemon[1].Name, nil
+	return "nope", nil
     //return string(responseData), nil
 	//return string(p.Name[0]), nil
 }

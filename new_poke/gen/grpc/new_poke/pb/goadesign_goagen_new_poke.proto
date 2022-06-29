@@ -1,0 +1,27 @@
+// Code generated with goa v3.7.6, DO NOT EDIT.
+//
+// new_poke protocol buffer definition
+//
+// Command:
+// $ goa gen new_poke/design
+
+syntax = "proto3";
+
+package new_poke;
+
+option go_package = "/new_pokepb";
+
+// return pokemon with same first letter as name
+service NewPoke {
+	// Pokemon implements pokemon.
+	rpc Pokemon (PokemonRequest) returns (PokemonResponse);
+}
+
+message PokemonRequest {
+	// first name
+	string name = 1;
+}
+
+message PokemonResponse {
+	string field = 1;
+}
