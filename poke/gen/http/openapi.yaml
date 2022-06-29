@@ -1,0 +1,47 @@
+swagger: "2.0"
+info:
+    title: pokemon letters
+    description: give a name and get back pokemon with same first letter
+    version: ""
+host: localhost:8000
+consumes:
+    - application/json
+    - application/xml
+    - application/gob
+produces:
+    - application/json
+    - application/xml
+    - application/gob
+paths:
+    /openapi.json:
+        get:
+            tags:
+                - poke
+            summary: Download ./gen/http/openapi.json
+            operationId: poke#/openapi.json
+            responses:
+                "200":
+                    description: File downloaded
+                    schema:
+                        type: file
+            schemes:
+                - http
+    /pokemon/{name}:
+        get:
+            tags:
+                - poke
+            summary: pokemon poke
+            operationId: poke#pokemon
+            parameters:
+                - name: name
+                  in: path
+                  description: first name
+                  required: true
+                  type: string
+            responses:
+                "200":
+                    description: OK response.
+                    schema:
+                        type: string
+            schemes:
+                - http

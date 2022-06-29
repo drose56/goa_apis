@@ -1,0 +1,58 @@
+openapi: 3.0.3
+info:
+    title: Calculator Service
+    description: Service for multiplying numbers, a Goa teaser
+    version: "1.0"
+servers:
+    - url: http://localhost:8000
+paths:
+    /addnums/{a}/{b}:
+        get:
+            tags:
+                - add
+            summary: addnums add
+            operationId: add#addnums
+            parameters:
+                - name: a
+                  in: path
+                  description: Left operand
+                  required: true
+                  schema:
+                    type: integer
+                    description: Left operand
+                    example: 1916634972174208221
+                    format: int64
+                  example: 606993925878669413
+                - name: b
+                  in: path
+                  description: Right operand
+                  required: true
+                  schema:
+                    type: integer
+                    description: Right operand
+                    example: 8070426282219408410
+                    format: int64
+                  example: 8797672985009481171
+            responses:
+                "200":
+                    description: OK response.
+                    content:
+                        application/json:
+                            schema:
+                                type: integer
+                                example: 8375711119592012366
+                                format: int64
+                            example: 6990839137317759092
+    /openapi.json:
+        get:
+            tags:
+                - add
+            summary: Download ./gen/http/openapi.json
+            operationId: add#/openapi.json
+            responses:
+                "200":
+                    description: File downloaded
+components: {}
+tags:
+    - name: add
+      description: The calc service performs operations on numbers.
